@@ -10,6 +10,7 @@
 
 ## 技术环境
 - **后端框架**：Spring Boot 3.4.11
+- **前端**：原生HTML5 + 内联CSS
 - **数据库**：MySQL + Spring Data JPA
 - **构建工具**：Maven
 - **Java版本**：21
@@ -30,7 +31,7 @@ public String login(@RequestParam String username, @RequestParam String password
     try {
         conn = DriverManager.getConnection(URL, USER, PASS);
         
-        // 🔥 漏洞所在：直接字符串拼接
+        // 漏洞所在：直接字符串拼接
         String sql = "SELECT * FROM users WHERE username='" + username + 
                     "' AND password='" + password + "'";
         
@@ -57,13 +58,12 @@ public String login(@RequestParam String username, @RequestParam String password
 
 ### 攻击payload：
 ```
-用户名：' OR '1'='1
+用户名：白月魁' OR '1'='1
 密码：任意值（如123）
 ```
 
 ## SQL注入成功截图：
-![SQL注入攻击成功](./图片/SQL注入成功截图.png)
-
+<img width="1343" height="330" alt="屏幕截图 2025-11-03 175829" src="https://github.com/user-attachments/assets/4cd0a36e-7b73-4048-94c6-b26d5dd3f570" />
 
 ### 攻击原理分析：
 
@@ -125,6 +125,18 @@ spring:
     username: root
     password: MySQL258369
 ```
+
+## SQL注入攻击验证
+
+### 攻击payload：
+```
+用户名：白月魁' OR '1'='1
+密码：任意值（如123）
+```
+
+## SQL注入失败截图：
+<img width="874" height="325" alt="SQL注入失败截图" src="https://github.com/user-attachments/assets/228d4193-3861-4ed3-b5ab-dc8b3348b575" />
+
 
 前端`login.html`表单指向安全接口：
 ```html
