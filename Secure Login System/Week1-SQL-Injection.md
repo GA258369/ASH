@@ -158,4 +158,4 @@ spring:
 - 依赖冲突：注释掉了重复的MySQL依赖，保持pom.xml整洁
 - 代码结构：从原始的JDBC连接升级到Spring JdbcTemplate，更符合企业级开发规范
 
-*本系列完整代码已开源在[SecuredAuthLab](你的GitHub项目链接)仓库，欢迎Star和反馈！*
+*本系列完整代码已开源在[SecuredAuthLab](https://github.com/GA258369?tab=repositories)仓库，欢迎Star和反馈！*
